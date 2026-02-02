@@ -126,9 +126,9 @@ button:hover {transform:scale(1.05);}
   <h2>Our Special Moments 📸</h2>
   <p>Click each photo to reveal our memories ✨</p>
   <div class="photos">
-    <div class="photo-card" data-img="https://raw.githubusercontent.com/parshvashah55/future-mrs-shah/main/photo1.jpg" data-caption="The one with ‘bhaade k flowers’ 🌸💐"></div>
-    <div class="photo-card" data-img="https://raw.githubusercontent.com/parshvashah55/future-mrs-shah/main/photo2.jpg" data-caption="The one where I can’t get enough of your puppies 🐶📸 (need different angles 😅)"></div>
-    <div class="photo-card" data-img="https://raw.githubusercontent.com/parshvashah55/future-mrs-shah/main/photo3.jpg" data-caption="The one where I found out just how much of a Junglee you are 🐾🔥"></div>
+    <div class="photo-card" data-img="https://parshvashah55.github.io/future-mrs-shah/photo1.jpg" data-caption="The one with ‘bhaade k flowers’ 🌸💐"></div>
+    <div class="photo-card" data-img="https://parshvashah55.github.io/future-mrs-shah/photo2.jpg" data-caption="The one where I can’t get enough of your puppies 🐶📸 (need different angles 😅)"></div>
+    <div class="photo-card" data-img="https://parshvashah55.github.io/future-mrs-shah/photo3.jpg" data-caption="The one where I found out just how much of a Junglee you are 🐾🔥"></div>
   </div>
   <div id="photo-caption" class="photo-caption"></div>
   <p style="font-size:13px;margin-top:18px;">These are only 3 of them,<br>but thousands more to go.</p>
@@ -180,7 +180,7 @@ function createFloat(){ const el=document.createElement("div"); el.className="fl
 function createConfetti(){ const el=document.createElement("div"); el.className="float"; el.innerHTML=["🎉","💖","✨","💘"][Math.floor(Math.random()*4)]; el.style.left=Math.random()*100+"vw"; el.style.fontSize=18+Math.random()*20+"px"; el.style.animationDuration=4+Math.random()*3+"s"; document.body.appendChild(el); setTimeout(()=>el.remove(),8000);}
 setInterval(createFloat,220);
 
-/* Photo logic with stickers, zoom, placeholder, GitHub raw URLs */
+/* Photo logic with stickers, zoom, GitHub Pages URLs */
 const cards=document.querySelectorAll('.photo-card');
 const captionEl=document.getElementById('photo-caption');
 const stickersList=["💖","⭐","🌸","🦋","✨","💙"];
