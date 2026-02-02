@@ -12,7 +12,7 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(120deg, #ffe6f0, #e6f0ff, #fff);
-  overflow: hidden;
+  overflow-x: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,7 +22,7 @@ body {
 .card {
   background: linear-gradient(145deg, #ffffff, #fff0f5);
   width: 90%;
-  max-width: 460px;
+  max-width: 480px;
   padding: 34px;
   border-radius: 28px;
   box-shadow: 0 30px 60px rgba(0,0,0,0.18);
@@ -47,6 +47,7 @@ button {
   cursor: pointer;
   background: linear-gradient(135deg, #ff4d6d, #ff758f);
   color: white;
+  transition: transform 0.25s ease;
 }
 
 button:hover { transform: scale(1.05); }
@@ -77,7 +78,10 @@ button:hover { transform: scale(1.05); }
   position: relative;
   font-size: 90px;
   cursor: pointer;
+  transition: transform 0.5s ease;
 }
+
+.envelope:hover { transform: rotate(-5deg); }
 
 .envelope.open {
   animation: openEnvelope 1s forwards;
@@ -107,17 +111,44 @@ button:hover { transform: scale(1.05); }
 /* Photos */
 .photos {
   display: flex;
-  gap: 14px;
-  margin-top: 22px;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
-.photo {
+.photo-card {
   flex: 1;
-  height: 115px;
-  border-radius: 18px;
+  min-width: 90px;
+  height: 120px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ffdee9, #c9e4ff); /* sticker back */
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  cursor: pointer;
   background-size: cover;
   background-position: center;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.photo-card.revealed {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 80vw;
+  max-width: 400px;
+  height: auto;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* Caption */
+.photo-caption {
+  font-size: 13px;
+  margin-top: 8px;
+  text-align: center;
 }
 
 /* Valentine page */
@@ -169,6 +200,15 @@ button:hover { transform: scale(1.05); }
   0% { transform: translateY(0); }
   100% { transform: translateY(110vh); }
 }
+
+/* Mobile responsiveness */
+@media screen and (max-width: 500px) {
+  .photo-card { min-width: 70px; height: 100px; }
+  .photo-card.revealed { width: 90vw; }
+  .card { padding: 20px; }
+  h1, h2 { font-size: 18px; }
+  .valentine-text { font-size: 24px; }
+}
 </style>
 </head>
 
@@ -185,7 +225,7 @@ button:hover { transform: scale(1.05); }
 <!-- PAGE 1 -->
 <div class="step active">
   <h1>Hello Ms. Sheth 🌸</h1>
-  <p>We’re not in the same place.<br>But this still felt worth doing… properly.</p>
+  <p>Even though we are not at the same place, I want to do this properly 💌</p>
   <button onclick="nextStep(true)">Continue</button>
 </div>
 
@@ -197,10 +237,11 @@ button:hover { transform: scale(1.05); }
     <p>(Click to open)</p>
     <div class="letter" id="letter">
       <strong>20th December 2025 · 1:15 PM</strong><br><br>
-      My life changed when I met you.<br>
-      Quietly. Gently.<br>
-      Everything after felt lighter, calmer… better.<br><br>
-      Even across distance, you became my constant.
+      My life changed when I met you 🌸<br>
+      From your teasing first “Sorry I can't come” 😅 to “I don’t want you to go” 🥺, everything feels like a dream.<br>
+      From that 2nd hug 🤗, those kissing lessons 😏, that jungliyat 🐾 and besharmi 😜, to that “tu bau pyaaro pyaaro lage che” 💖…<br>
+      All of these within a month that was so magical ✨, I can’t wait to spend the rest of our life together.<br>
+      Even across distance, you are my constant 🌹💌<br><br>
       <button onclick="nextStep(true)">Continue</button>
     </div>
   </div>
@@ -209,12 +250,13 @@ button:hover { transform: scale(1.05); }
 <!-- PAGE 3 -->
 <div class="step">
   <h2>Our Special Moments 📸</h2>
-  <p>Click each photo to relive our memories ✨</p>
+  <p>Click each photo to reveal our memories ✨</p>
   <div class="photos">
-    <div class="photo" style="background-image:url('photo1.jpg')"></div>
-    <div class="photo" style="background-image:url('photo2.jpg')"></div>
-    <div class="photo" style="background-image:url('photo3.jpg')"></div>
+    <div class="photo-card" data-img="photo1.jpg" data-caption="The one with ‘bhaade k flowers’ 🌸💐"></div>
+    <div class="photo-card" data-img="photo2.jpg" data-caption="The one where I can’t get enough of your puppies 🐶📸 (need different angles 😅)"></div>
+    <div class="photo-card" data-img="photo3.jpg" data-caption="The one where I found out just how much of a Junglee you are 🐾🔥"></div>
   </div>
+  <div id="photo-caption" class="photo-caption"></div>
   <p style="font-size:13px;margin-top:18px;">
     These are only 3 of them,<br>but thousands more to go.
   </p>
@@ -234,11 +276,14 @@ button:hover { transform: scale(1.05); }
 <div class="step">
   <h1 style="font-size:34px;">YOU SAID YESSS 💖💖💖</h1>
   <p style="font-size:15px;line-height:1.8;margin-top:20px;">
-    And just like that, this moment became one I’ll remember.<br><br>
-    Thank you for choosing us — despite distance, time zones,
-    and everything in between. This is only one Valentine’s Day,
-    but it’s the beginning of many more memories,
-    laughs, and moments that we’ll someday look back on and smile.
+And just like that… you’ve officially signed up for the next 50 Valentine’s Days 😌💍<br>
+(No take backsies. No refunds. No exchanges. I checked the rules 😏)<br><br>
+And honestly… I wouldn’t want anyone else by my side 🌸💞<br>
+You somehow turn even the simplest days into something magical ✨<br>
+From our endless bakwas 😜💬, teasing fights 😏, random nonsense 🐾, to quiet moments that mean everything 🥹 — it’s always better with you 💫<br><br>
+I can’t wait for the million more little crazy, messy, fun, love-filled moments we’re about to create together ❤️💫<br>
+Across distance, across time, across everything — it’s you. Always you 🌍💌<br><br>
+— With so much love, your Chikudo 🐣💖
   </p>
 </div>
 
@@ -260,9 +305,7 @@ function nextStep(startMusic){
   steps[currentStep].classList.add('active');
 }
 
-function toggleMusic(){
-  music.paused ? music.play() : music.pause();
-}
+function toggleMusic(){ music.paused ? music.play() : music.pause(); }
 
 function openLetter(){
   document.getElementById('envelope').classList.add('open');
@@ -271,8 +314,8 @@ function openLetter(){
 
 /* YES confetti */
 function yesClicked(){
-  for(let i=0;i<40;i++){
-    setTimeout(createConfetti, i*40);
+  for(let i=0;i<50;i++){
+    setTimeout(createConfetti, i*30);
   }
   nextStep(true);
 }
@@ -316,6 +359,24 @@ function createConfetti(){
 }
 
 setInterval(createFloat, 220);
+
+/* Photo reveal logic */
+const cards = document.querySelectorAll('.photo-card');
+const captionEl = document.getElementById('photo-caption');
+
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    if(card.classList.contains('revealed')){
+      card.classList.remove('revealed');
+      card.style.backgroundImage = '';
+      captionEl.innerText = '';
+    } else {
+      card.classList.add('revealed');
+      card.style.backgroundImage = `url('${card.dataset.img}')`;
+      captionEl.innerText = card.dataset.caption;
+    }
+  });
+});
 </script>
 
 </body>
