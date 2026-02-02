@@ -11,7 +11,7 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top, #ffe6f0, #ffffff);
+  background: linear-gradient(120deg, #ffe6f0, #e6f0ff, #fff);
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -20,12 +20,12 @@ body {
 }
 
 .card {
-  background: white;
+  background: linear-gradient(145deg, #ffffff, #fff0f5);
   width: 90%;
-  max-width: 430px;
-  padding: 30px;
-  border-radius: 22px;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+  max-width: 460px;
+  padding: 34px;
+  border-radius: 28px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.18);
   text-align: center;
   position: relative;
   z-index: 2;
@@ -40,12 +40,12 @@ h1, h2 {
 
 button {
   margin-top: 25px;
-  padding: 12px 30px;
+  padding: 14px 36px;
   border: none;
-  border-radius: 30px;
-  font-size: 15px;
+  border-radius: 40px;
+  font-size: 16px;
   cursor: pointer;
-  background: #ff4d6d;
+  background: linear-gradient(135deg, #ff4d6d, #ff758f);
   color: white;
 }
 
@@ -65,55 +65,107 @@ button:hover { transform: scale(1.05); }
   z-index: 3;
 }
 
-/* Envelope */
-.envelope {
-  font-size: 80px;
-  cursor: pointer;
-  transition: transform 0.3s;
+/* Envelope animation */
+.mail-box {
+  background: linear-gradient(135deg, #ffe0ec, #e0f0ff);
+  border-radius: 22px;
+  padding: 28px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
 }
-.envelope:hover { transform: scale(1.1); }
+
+.envelope {
+  position: relative;
+  font-size: 90px;
+  cursor: pointer;
+}
+
+.envelope.open {
+  animation: openEnvelope 1s forwards;
+}
+
+@keyframes openEnvelope {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1) rotateX(25deg); }
+}
+
+.letter {
+  background: linear-gradient(135deg, #fff0f5, #ffe6ec);
+  border-radius: 18px;
+  padding: 22px;
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 1.8;
+  display: none;
+  animation: letterIn 1s forwards;
+}
+
+@keyframes letterIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 /* Photos */
 .photos {
   display: flex;
-  gap: 12px;
-  margin-top: 20px;
+  gap: 14px;
+  margin-top: 22px;
 }
+
 .photo {
   flex: 1;
-  height: 100px;
-  background: #f3f3f3;
-  border-radius: 12px;
+  height: 115px;
+  background: linear-gradient(135deg, #ffdee9, #c9e4ff);
+  border-radius: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 13px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
-.photo:hover { background: #ffe6ec; }
 
-/* Final buttons */
+/* Valentine page */
+.valentine-text {
+  font-size: 32px;
+  background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
 .final-buttons {
-  margin-top: 35px;
+  margin-top: 45px;
   position: relative;
-  height: 140px;
+  height: 170px;
+}
+
+.yes-btn {
+  font-size: 20px;
+  padding: 20px 56px;
+  background: linear-gradient(135deg, #ff4d6d, #ff85a1);
+  animation: glow 1.6s infinite;
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 12px #ff4d6d; }
+  50% { box-shadow: 0 0 30px #ff85a1; }
+  100% { box-shadow: 0 0 12px #ff4d6d; }
 }
 
 .no-btn {
   background: #ccc;
   color: #333;
   position: absolute;
-  left: 55%;
+  left: 60%;
   top: 0;
   transition: transform 0.25s ease;
 }
 
-/* Floating background elements */
+/* Floating elements */
 .float {
   position: fixed;
   top: -20px;
   animation: fall linear infinite;
-  opacity: 0.8;
   pointer-events: none;
 }
 
@@ -137,64 +189,61 @@ button:hover { transform: scale(1.05); }
 <!-- PAGE 1 -->
 <div class="step active">
   <h1>Hello Ms. Sheth 🌸</h1>
-  <p>
-    We’re not in the same place.<br>
-    But this still felt worth doing… properly.
-  </p>
+  <p>We’re not in the same place.<br>But this still felt worth doing… properly.</p>
   <button onclick="nextStep(true)">Continue</button>
 </div>
 
 <!-- PAGE 2 -->
 <div class="step">
-  <h2>You have mail 💌</h2>
-  <div class="envelope" onclick="openLetter()">✉️</div>
-  <p>(Click the envelope)</p>
-
-  <div id="letter" style="display:none;">
-    <p style="margin-top:20px; font-size:14px; line-height:1.7;">
+  <h2>You Have Mail 💌</h2>
+  <div class="mail-box">
+    <div class="envelope" id="envelope" onclick="openLetter()">✉️</div>
+    <p>(Click to open)</p>
+    <div class="letter" id="letter">
       <strong>20th December 2025 · 1:15 PM</strong><br><br>
       My life changed when I met you.<br>
-      Not loudly. Not suddenly.<br>
-      But in that quiet way where everything after felt… better.<br><br>
+      Quietly. Gently.<br>
+      Everything after felt lighter, calmer… better.<br><br>
       Even across distance, you became my constant.
-    </p>
-    <button onclick="nextStep(true)">Continue</button>
+      <button onclick="nextStep(true)">Continue</button>
+    </div>
   </div>
 </div>
 
 <!-- PAGE 3 -->
 <div class="step">
   <h2>Our Special Moments 📸</h2>
-  <p>Click on each photo to reveal our memories together.</p>
-
+  <p>Click each photo to relive our memories ✨</p>
   <div class="photos">
-    <div class="photo">Photo 1</div>
-    <div class="photo">Photo 2</div>
-    <div class="photo">Photo 3</div>
+    <div class="photo">Photo 1 📸</div>
+    <div class="photo">Photo 2 💫</div>
+    <div class="photo">Photo 3 💖</div>
   </div>
-
-  <p style="font-size:12px; margin-top:15px;">
-    These are only 3 of them,<br>
-    but thousands more to go.
+  <p style="font-size:13px;margin-top:18px;">
+    These are only 3 of them,<br>but thousands more to go.
   </p>
-
   <button onclick="nextStep(true)">Continue</button>
 </div>
 
 <!-- PAGE 4 -->
 <div class="step">
-  <h1 style="font-size:28px;">Will you be my Valentine?</h1>
-
+  <h1 class="valentine-text">Will you be my Valentine?</h1>
   <div class="final-buttons">
-    <button onclick="yesClicked()">YES ❤️</button>
+    <button class="yes-btn" onclick="yesClicked()">YES ❤️</button>
     <button class="no-btn" id="noBtn">NO 🙃</button>
   </div>
 </div>
 
 <!-- PAGE 5 -->
 <div class="step">
-  <h1>Worth every mile 💖</h1>
-  <p>Happy Valentine’s Day, Ms. Sheth.</p>
+  <h1 style="font-size:34px;">YOU SAID YESSS 💖💖💖</h1>
+  <p style="font-size:15px;line-height:1.8;margin-top:20px;">
+    And just like that, this moment became one I’ll remember.<br><br>
+    Thank you for choosing us — despite distance, time zones,
+    and everything in between. This is only one Valentine’s Day,
+    but it’s the beginning of many more memories,
+    laughs, and moments that we’ll someday look back on and smile.
+  </p>
 </div>
 
 </div>
@@ -220,10 +269,15 @@ function toggleMusic(){
 }
 
 function openLetter(){
+  document.getElementById('envelope').classList.add('open');
   document.getElementById('letter').style.display = 'block';
 }
 
+/* YES confetti */
 function yesClicked(){
+  for(let i=0;i<40;i++){
+    setTimeout(createConfetti, i*40);
+  }
   nextStep(true);
 }
 
@@ -233,29 +287,39 @@ let hoverCount = 0;
 
 noBtn.addEventListener('mouseenter', () => {
   hoverCount++;
-  const scale = Math.max(0.2, 1 - hoverCount * 0.15);
-  noBtn.style.transform = `scale(${scale})`;
-
-  if(hoverCount >= 5){
-    noBtn.style.zIndex = -1; // disappears behind YES
-  }
+  const scale = Math.max(0.3, 1 - hoverCount * 0.25);
+  const x = Math.random()*120 - 60;
+  const y = Math.random()*50 - 25;
+  noBtn.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+  if(hoverCount >= 3) noBtn.style.zIndex = -1;
 });
 
-/* Floating background generator */
-const elements = ["❄️","💙","⭐","🌸","🦋"];
+/* Floating background */
+const elements = ["❄️","💙","⭐","🌸","🦋","💖"];
 
 function createFloat(){
   const el = document.createElement("div");
   el.className = "float";
   el.innerHTML = elements[Math.floor(Math.random()*elements.length)];
   el.style.left = Math.random()*100 + "vw";
-  el.style.fontSize = 12 + Math.random()*22 + "px";
+  el.style.fontSize = 14 + Math.random()*26 + "px";
   el.style.animationDuration = 6 + Math.random()*6 + "s";
   document.body.appendChild(el);
   setTimeout(()=>el.remove(),12000);
 }
 
-setInterval(createFloat, 250);
+function createConfetti(){
+  const el = document.createElement("div");
+  el.className = "float";
+  el.innerHTML = ["🎉","💖","✨","💘"][Math.floor(Math.random()*4)];
+  el.style.left = Math.random()*100 + "vw";
+  el.style.fontSize = 18 + Math.random()*20 + "px";
+  el.style.animationDuration = 4 + Math.random()*3 + "s";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),8000);
+}
+
+setInterval(createFloat, 220);
 </script>
 
 </body>
