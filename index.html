@@ -1,129 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For Ms. Sheth ❄️</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>For Ms. Sheth 💌</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ffe6ec, #ffffff);
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      color: #333;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #ffe6f0, #ffffff);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
 
-    .card {
-      background: #fff;
-      width: 90%;
-      max-width: 420px;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
+.card {
+  background: white;
+  width: 90%;
+  max-width: 430px;
+  padding: 30px;
+  border-radius: 22px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
 
-    h1, h2 {
-      font-family: 'Playfair Display', serif;
-    }
+.step { display: none; }
+.step.active { display: block; }
 
-    p {
-      font-size: 15px;
-      line-height: 1.6;
-    }
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+}
 
-    .step { display: none; }
-    .step.active { display: block; }
+button {
+  margin-top: 25px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  font-size: 15px;
+  cursor: pointer;
+  background: #ff4d6d;
+  color: white;
+}
 
-    button {
-      margin-top: 20px;
-      padding: 12px 26px;
-      border: none;
-      border-radius: 30px;
-      font-size: 15px;
-      cursor: pointer;
-      background: #ff4d6d;
-      color: white;
-      transition: all 0.25s ease;
-    }
+button:hover { transform: scale(1.05); }
 
-    button:hover { transform: scale(1.05); }
+.music-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  background: rgba(255,255,255,0.9);
+  z-index: 3;
+}
 
-    .option-btn {
-      display: block;
-      width: 100%;
-      margin-top: 12px;
-      background: #f3f3f3;
-      color: #333;
-    }
+/* Envelope */
+.envelope {
+  font-size: 80px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.envelope:hover { transform: scale(1.1); }
 
-    .final-buttons {
-      margin-top: 30px;
-      position: relative;
-      height: 120px;
-    }
+/* Photos */
+.photos {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+.photo {
+  flex: 1;
+  height: 100px;
+  background: #f3f3f3;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 12px;
+}
+.photo:hover { background: #ffe6ec; }
 
-    .no-btn {
-      background: #ccc;
-      color: #333;
-      position: absolute;
-      left: 55%;
-      top: 0;
-      transition: transform 0.2s ease;
-    }
+/* Final buttons */
+.final-buttons {
+  margin-top: 35px;
+  position: relative;
+  height: 140px;
+}
 
-    .micro-text {
-      font-size: 12px;
-      margin-top: 12px;
-      opacity: 0.7;
-    }
+.no-btn {
+  background: #ccc;
+  color: #333;
+  position: absolute;
+  left: 55%;
+  top: 0;
+  transition: transform 0.25s ease;
+}
 
-    /* Snow / Hearts */
-    .flake {
-      position: fixed;
-      top: -10px;
-      font-size: 1em;
-      opacity: 0.8;
-      animation-name: fall;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-      z-index: 1;
-      pointer-events: none;
-    }
+/* Floating background elements */
+.float {
+  position: fixed;
+  top: -20px;
+  animation: fall linear infinite;
+  opacity: 0.8;
+  pointer-events: none;
+}
 
-    @keyframes fall {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(110vh); }
-    }
-
-    /* Music button */
-    .music-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.85);
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 20px;
-      cursor: pointer;
-      border: none;
-      z-index: 3;
-    }
-  </style>
+@keyframes fall {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(110vh); }
+}
+</style>
 </head>
+
 <body>
 
-<!-- Background Music -->
 <audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
@@ -132,121 +134,128 @@
 
 <div class="card">
 
-  <!-- STEP 1 -->
-  <div class="step active">
-    <h1>Hello Ms. Sheth 🌸</h1>
-    <p>
-      We’re not in the same place.<br>
-      But this still felt worth asking… properly.
+<!-- PAGE 1 -->
+<div class="step active">
+  <h1>Hello Ms. Sheth 🌸</h1>
+  <p>
+    We’re not in the same place.<br>
+    But this still felt worth doing… properly.
+  </p>
+  <button onclick="nextStep(true)">Continue</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="step">
+  <h2>You have mail 💌</h2>
+  <div class="envelope" onclick="openLetter()">✉️</div>
+  <p>(Click the envelope)</p>
+
+  <div id="letter" style="display:none;">
+    <p style="margin-top:20px; font-size:14px; line-height:1.7;">
+      <strong>20th December 2025 · 1:15 PM</strong><br><br>
+      My life changed when I met you.<br>
+      Not loudly. Not suddenly.<br>
+      But in that quiet way where everything after felt… better.<br><br>
+      Even across distance, you became my constant.
     </p>
     <button onclick="nextStep(true)">Continue</button>
   </div>
+</div>
 
-  <!-- STEP 2 -->
-  <div class="step">
-    <h2>Distance can be many things.</h2>
-    <p>To you, it feels more like…</p>
-    <button class="option-btn" onclick="nextStep(true)">A challenge</button>
-    <button class="option-btn" onclick="nextStep(true)">A test of intention</button>
-    <p class="micro-text">I see it the same way.</p>
+<!-- PAGE 3 -->
+<div class="step">
+  <h2>Our Special Moments 📸</h2>
+  <p>Click on each photo to reveal our memories together.</p>
+
+  <div class="photos">
+    <div class="photo">Photo 1</div>
+    <div class="photo">Photo 2</div>
+    <div class="photo">Photo 3</div>
   </div>
 
-  <!-- STEP 3 -->
-  <div class="step">
-    <h2>One more thing.</h2>
-    <p>
-      When someone makes time —<br>
-      despite time zones and schedules —<br>
-      does that matter?
-    </p>
-    <button class="option-btn" onclick="nextStep(true)">It does</button>
-    <button class="option-btn" onclick="nextStep(true)">It really does</button>
-    <p class="micro-text">Effort travels well.</p>
+  <p style="font-size:12px; margin-top:15px;">
+    These are only 3 of them,<br>
+    but thousands more to go.
+  </p>
+
+  <button onclick="nextStep(true)">Continue</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="step">
+  <h1 style="font-size:28px;">Will you be my Valentine?</h1>
+
+  <div class="final-buttons">
+    <button onclick="yesClicked()">YES ❤️</button>
+    <button class="no-btn" id="noBtn">NO 🙃</button>
   </div>
+</div>
 
-  <!-- STEP 4 -->
-  <div class="step">
-    <h1>Ms. Sheth,</h1>
-    <p>
-      even with the miles between us…<br>
-      will you be my Valentine?
-    </p>
-
-    <div class="final-buttons">
-      <button onclick="yesClicked()">YES ❤️</button>
-      <button class="no-btn" id="noBtn">NO 🙃</button>
-    </div>
-
-    <p class="micro-text">Distance didn’t stop me from asking.</p>
-  </div>
-
-  <!-- STEP 5 -->
-  <div class="step">
-    <h1>Worth every mile ❄️💖</h1>
-    <p>Happy Valentine’s Day, Ms. Sheth.</p>
-    <p class="micro-text">Until this question is asked in person.</p>
-  </div>
+<!-- PAGE 5 -->
+<div class="step">
+  <h1>Worth every mile 💖</h1>
+  <p>Happy Valentine’s Day, Ms. Sheth.</p>
+</div>
 
 </div>
 
 <script>
-  let currentStep = 0;
-  const steps = document.querySelectorAll(".step");
-  const music = document.getElementById("bgMusic");
-  let musicStarted = false;
-  let heartsMode = false;
+let currentStep = 0;
+const steps = document.querySelectorAll('.step');
+const music = document.getElementById('bgMusic');
+let musicStarted = false;
 
-  function nextStep(startMusic) {
-    if (startMusic && !musicStarted) {
-      music.play();
-      musicStarted = true;
-    }
-    steps[currentStep].classList.remove("active");
-    currentStep++;
-    steps[currentStep].classList.add("active");
+function nextStep(startMusic){
+  if(startMusic && !musicStarted){
+    music.play();
+    musicStarted = true;
   }
+  steps[currentStep].classList.remove('active');
+  currentStep++;
+  steps[currentStep].classList.add('active');
+}
 
-  function yesClicked() {
-    heartsMode = true;
-    nextStep(true);
+function toggleMusic(){
+  music.paused ? music.play() : music.pause();
+}
+
+function openLetter(){
+  document.getElementById('letter').style.display = 'block';
+}
+
+function yesClicked(){
+  nextStep(true);
+}
+
+/* NO button logic */
+const noBtn = document.getElementById('noBtn');
+let hoverCount = 0;
+
+noBtn.addEventListener('mouseenter', () => {
+  hoverCount++;
+  const scale = Math.max(0.2, 1 - hoverCount * 0.15);
+  noBtn.style.transform = `scale(${scale})`;
+
+  if(hoverCount >= 5){
+    noBtn.style.zIndex = -1; // disappears behind YES
   }
+});
 
-  function toggleMusic() {
-    music.paused ? music.play() : music.pause();
-  }
+/* Floating background generator */
+const elements = ["❄️","💙","⭐","🌸","🦋"];
 
-  // WILD NO BUTTON
-  const noBtn = document.getElementById("noBtn");
-  noBtn.addEventListener("mouseenter", () => {
-    const x = Math.random() * window.innerWidth - noBtn.offsetWidth;
-    const y = Math.random() * window.innerHeight - noBtn.offsetHeight;
-    noBtn.style.transform = `translate(${x}px, ${y}px)`;
-  });
+function createFloat(){
+  const el = document.createElement("div");
+  el.className = "float";
+  el.innerHTML = elements[Math.floor(Math.random()*elements.length)];
+  el.style.left = Math.random()*100 + "vw";
+  el.style.fontSize = 12 + Math.random()*22 + "px";
+  el.style.animationDuration = 6 + Math.random()*6 + "s";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),12000);
+}
 
-  // Snow / Heart generator with speed variation
-  function createFlake() {
-    const flake = document.createElement("div");
-    flake.className = "flake";
-    flake.innerHTML = heartsMode ? "❤️" : "❄";
-    flake.style.left = Math.random() * 100 + "vw";
-    flake.style.fontSize = 10 + Math.random() * 20 + "px";
-
-    if (!heartsMode) {
-      const colors = ["#a3d4ff", "#66b2ff", "#3399ff", "#4da6ff"];
-      flake.style.color = colors[Math.floor(Math.random() * colors.length)];
-
-      // Vary falling speed by color/lightness
-      const speed = 4 + Math.random() * 4; // 4s to 8s
-      flake.style.animationDuration = speed + "s";
-    } else {
-      flake.style.animationDuration = 5 + Math.random() * 5 + "s";
-    }
-
-    document.body.appendChild(flake);
-    setTimeout(() => flake.remove(), 10000);
-  }
-
-  setInterval(createFlake, 300);
+setInterval(createFloat, 250);
 </script>
 
 </body>
