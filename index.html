@@ -114,13 +114,9 @@ button:hover { transform: scale(1.05); }
 .photo {
   flex: 1;
   height: 115px;
-  background: linear-gradient(135deg, #ffdee9, #c9e4ff);
   border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 13px;
+  background-size: cover;
+  background-position: center;
   box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
@@ -215,9 +211,9 @@ button:hover { transform: scale(1.05); }
   <h2>Our Special Moments 📸</h2>
   <p>Click each photo to relive our memories ✨</p>
   <div class="photos">
-    <div class="photo">Photo 1 📸</div>
-    <div class="photo">Photo 2 💫</div>
-    <div class="photo">Photo 3 💖</div>
+    <div class="photo" style="background-image:url('photo1.jpg')"></div>
+    <div class="photo" style="background-image:url('photo2.jpg')"></div>
+    <div class="photo" style="background-image:url('photo3.jpg')"></div>
   </div>
   <p style="font-size:13px;margin-top:18px;">
     These are only 3 of them,<br>but thousands more to go.
