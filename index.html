@@ -9,90 +9,77 @@
 
 <style>
 body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(120deg, #ffe6f0, #e6f0ff, #fff);
-  overflow-x: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(120deg,#ffe6f0,#e6f0ff,#fff);
+  overflow-x:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
 }
-
 .card {
-  background: linear-gradient(145deg, #ffffff, #fff0f5);
-  width: 90%;
-  max-width: 480px;
-  padding: 34px;
-  border-radius: 28px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.18);
-  text-align: center;
-  position: relative;
-  z-index: 2;
+  background:linear-gradient(145deg,#ffffff,#fff0f5);
+  width:90%;
+  max-width:480px;
+  padding:34px;
+  border-radius:28px;
+  box-shadow:0 30px 60px rgba(0,0,0,0.18);
+  text-align:center;
+  position:relative;
+  z-index:2;
 }
-
-.step { display: none; }
-.step.active { display: block; }
-
-h1, h2 { font-family: 'Playfair Display', serif; }
-
+.step {display:none;}
+.step.active {display:block;}
+h1,h2 {font-family:'Playfair Display',serif;}
 button {
-  margin-top: 25px;
-  padding: 14px 36px;
-  border: none;
-  border-radius: 40px;
-  font-size: 16px;
-  cursor: pointer;
-  background: linear-gradient(135deg, #ff4d6d, #ff758f);
-  color: white;
-  transition: transform 0.25s ease;
+  margin-top:25px;
+  padding:14px 36px;
+  border:none;
+  border-radius:40px;
+  font-size:16px;
+  cursor:pointer;
+  background:linear-gradient(135deg,#ff4d6d,#ff758f);
+  color:white;
+  transition:transform 0.25s ease;
 }
-
-button:hover { transform: scale(1.05); }
-
+button:hover {transform:scale(1.05);}
 .music-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 20px;
-  border: none;
-  cursor: pointer;
-  background: rgba(255,255,255,0.9);
-  z-index: 3;
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  border-radius:50%;
+  width:50px;
+  height:50px;
+  font-size:20px;
+  border:none;
+  cursor:pointer;
+  background:rgba(255,255,255,0.9);
+  z-index:3;
 }
-
 /* Envelope */
-.mail-box { background: linear-gradient(135deg,#ffe0ec,#e0f0ff); border-radius:22px; padding:28px; box-shadow:0 15px 30px rgba(0,0,0,0.15); }
-.envelope { position: relative; font-size:90px; cursor:pointer; transition: transform 0.5s ease; }
-.envelope:hover { transform: rotate(-5deg); }
-.envelope.open { animation: openEnvelope 1s forwards; }
-@keyframes openEnvelope { 0% {transform: scale(1);} 100% {transform: scale(1.1) rotateX(25deg);} }
-.letter { background: linear-gradient(135deg,#fff0f5,#ffe6ec); border-radius:18px; padding:22px; margin-top:20px; font-size:14px; line-height:1.8; display:none; animation:letterIn 1s forwards; }
-@keyframes letterIn { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
-
+.mail-box { background:linear-gradient(135deg,#ffe0ec,#e0f0ff); border-radius:22px; padding:28px; box-shadow:0 15px 30px rgba(0,0,0,0.15);}
+.envelope { position:relative; font-size:90px; cursor:pointer; transition:transform 0.5s ease; }
+.envelope:hover { transform: rotate(-5deg);}
+.envelope.open {animation: openEnvelope 1s forwards;}
+@keyframes openEnvelope {0%{transform:scale(1);}100%{transform:scale(1.1) rotateX(25deg);}}
+.letter {background:linear-gradient(135deg,#fff0f5,#ffe6ec); border-radius:18px; padding:22px; margin-top:20px; font-size:14px; line-height:1.8; display:none; animation:letterIn 1s forwards;}
+@keyframes letterIn {from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);}}
 /* Photos */
-.photos { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:20px; }
-.photo-card { flex:1; min-width:90px; height:120px; border-radius:16px; background: linear-gradient(135deg, #ffdee9, #c9e4ff); box-shadow:0 6px 16px rgba(0,0,0,0.15); cursor:pointer; background-size:cover; background-position:center; transition:all 0.4s ease; position:relative; overflow:hidden; }
-.photo-card .sticker { position:absolute; font-size:14px; opacity:0.8; }
-.photo-card.revealed { position:fixed; top:50%; left:50%; width:80vw; max-width:400px; height:auto; transform:translate(-50%,-50%); z-index:999; border-radius:20px; box-shadow:0 20px 40px rgba(0,0,0,0.3); transition: transform 0.5s ease, opacity 0.5s ease; }
-
-/* Caption */
-.photo-caption { font-size:13px; margin-top:8px; text-align:center; }
-
+.photos { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:20px;}
+.photo-card { flex:1; min-width:90px; height:120px; border-radius:16px; background:linear-gradient(135deg,#ffdee9,#c9e4ff); box-shadow:0 6px 16px rgba(0,0,0,0.15); cursor:pointer; background-size:cover; background-position:center; transition:all 0.4s ease; position:relative; overflow:hidden;}
+.photo-card .sticker { position:absolute; font-size:14px; opacity:0.8;}
+.photo-card.revealed { position:fixed; top:50%; left:50%; width:80vw; max-width:400px; height:auto; transform:translate(-50%,-50%); z-index:999; border-radius:20px; box-shadow:0 20px 40px rgba(0,0,0,0.3); transition:transform 0.5s ease,opacity 0.5s ease;}
+.photo-caption { font-size:13px; margin-top:8px; text-align:center;}
 /* Valentine page */
 .valentine-text { font-size:32px; background: linear-gradient(135deg,#ff4d6d,#ff8fa3); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:700; }
-.final-buttons { margin-top:45px; position:relative; height:170px; }
-.yes-btn { font-size:20px; padding:20px 56px; background:linear-gradient(135deg,#ff4d6d,#ff85a1); animation:glow 1.6s infinite; }
+.final-buttons { margin-top:45px; position:relative; height:170px;}
+.yes-btn { font-size:20px; padding:20px 56px; background:linear-gradient(135deg,#ff4d6d,#ff85a1); animation:glow 1.6s infinite;}
 @keyframes glow {0%{box-shadow:0 0 12px #ff4d6d;}50%{box-shadow:0 0 30px #ff85a1;}100%{box-shadow:0 0 12px #ff4d6d;}}
 .no-btn { background:#ccc; color:#333; position:absolute; left:60%; top:0; transition: transform 0.25s ease; }
-
 /* Floating */
-.float { position:fixed; top:-20px; animation:fall linear infinite; pointer-events:none; }
+.float { position:fixed; top:-20px; animation:fall linear infinite; pointer-events:none;}
 @keyframes fall {0%{transform:translateY(0);} 100%{transform:translateY(110vh);}}
-
 /* Mobile */
 @media screen and (max-width:500px){ .photo-card{min-width:70px;height:100px;} .photo-card.revealed{width:90vw;} .card{padding:20px;} h1,h2{font-size:18px;} .valentine-text{font-size:24px;} }
 </style>
@@ -176,50 +163,50 @@ let currentStep=0;
 const steps=document.querySelectorAll('.step');
 const music=document.getElementById('bgMusic');
 let musicStarted=false;
-
-function nextStep(startMusic){
-  if(startMusic && !musicStarted){ music.play(); musicStarted=true; }
-  steps[currentStep].classList.remove('active');
-  currentStep++;
-  steps[currentStep].classList.add('active');
-}
-
+function nextStep(startMusic){ if(startMusic && !musicStarted){ music.play(); musicStarted=true;} steps[currentStep].classList.remove('active'); currentStep++; steps[currentStep].classList.add('active'); }
 function toggleMusic(){ music.paused?music.play():music.pause(); }
 function openLetter(){ document.getElementById('envelope').classList.add('open'); document.getElementById('letter').style.display='block'; }
 function yesClicked(){ for(let i=0;i<50;i++){ setTimeout(createConfetti,i*30); } nextStep(true); }
 
-const noBtn=document.getElementById('noBtn'); let hoverCount=0;
+const noBtn=document.getElementById('noBtn'); 
+let hoverCount=0;
 noBtn.addEventListener('mouseenter',()=>{ hoverCount++; const scale=Math.max(0.3,1-hoverCount*0.25); const x=Math.random()*120-60; const y=Math.random()*50-25; noBtn.style.transform=`translate(${x}px,${y}px) scale(${scale})`; if(hoverCount>=3) noBtn.style.zIndex=-1; });
 
 const elements=["❄️","💙","⭐","🌸","🦋","💖"];
-function createFloat(){ const el=document.createElement("div"); el.className="float"; el.innerHTML=elements[Math.floor(Math.random()*elements.length)]; el.style.left=Math.random()*100+"vw"; el.style.fontSize=14+Math.random()*26+"px"; el.style.animationDuration=6+Math.random()*6+"s"; document.body.appendChild(el); setTimeout(()=>el.remove(),12000); }
-function createConfetti(){ const el=document.createElement("div"); el.className="float"; el.innerHTML=["🎉","💖","✨","💘"][Math.floor(Math.random()*4)]; el.style.left=Math.random()*100+"vw"; el.style.fontSize=18+Math.random()*20+"px"; el.style.animationDuration=4+Math.random()*3+"s"; document.body.appendChild(el); setTimeout(()=>el.remove(),8000); }
+function createFloat(){ const el=document.createElement("div"); el.className="float"; el.innerHTML=elements[Math.floor(Math.random()*elements.length)]; el.style.left=Math.random()*100+"vw"; el.style.fontSize=14+Math.random()*26+"px"; el.style.animationDuration=6+Math.random()*6+"s"; document.body.appendChild(el); setTimeout(()=>el.remove(),12000);}
+function createConfetti(){ const el=document.createElement("div"); el.className="float"; el.innerHTML=["🎉","💖","✨","💘"][Math.floor(Math.random()*4)]; el.style.left=Math.random()*100+"vw"; el.style.fontSize=18+Math.random()*20+"px"; el.style.animationDuration=4+Math.random()*3+"s"; document.body.appendChild(el); setTimeout(()=>el.remove(),8000);}
 setInterval(createFloat,220);
 
-/* Photo logic with stickers, zoom, placeholder, case-insensitive */
+/* Robust photo logic with stickers, zoom, placeholder, GitHub fallback */
 const cards=document.querySelectorAll('.photo-card');
 const captionEl=document.getElementById('photo-caption');
-const stickers=["💖","⭐","🌸","🦋","✨","💙"];
+const stickersList=["💖","⭐","🌸","🦋","✨","💙"];
+
 cards.forEach(card=>{
-  // add random stickers on back
   for(let i=0;i<5;i++){
     const span=document.createElement('span');
     span.className="sticker";
-    span.innerText=stickers[Math.floor(Math.random()*stickers.length)];
+    span.innerText=stickersList[Math.floor(Math.random()*stickersList.length)];
     span.style.top=Math.random()*70+"%";
     span.style.left=Math.random()*70+"%";
     span.style.fontSize=10+Math.random()*16+"px";
     card.appendChild(span);
   }
+
   card.addEventListener('click',()=>{
-    const imgNameOriginal=card.dataset.img;
-    const imgNameLower=imgNameOriginal.toLowerCase();
+    const imgName = card.dataset.img;
+    const githubRaw = `https://raw.githubusercontent.com/parshvashah55/future-mrs-shah/main/${imgName}`;
     const img=new Image();
-    img.src=imgNameLower;
-    img.onload=()=>{ togglePhoto(card,imgNameLower); };
-    img.onerror=()=>{ togglePhoto(card,"https://via.placeholder.com/400x300/ffe0f0/ff4d6d?text=💖"); captionEl.innerText="Oops! Photo missing 😅"; };
+    img.src=imgName;
+    img.onload=()=>{ togglePhoto(card,imgName); };
+    img.onerror=()=>{
+      img.src=githubRaw;
+      img.onload=()=>{ togglePhoto(card,githubRaw); };
+      img.onerror=()=>{ togglePhoto(card,"https://via.placeholder.com/400x300/ffe0f0/ff4d6d?text=💖"); captionEl.innerText="Oops! Photo missing 😅"; };
+    };
   });
 });
+
 function togglePhoto(card,imgSrc){
   if(card.classList.contains('revealed')){
     card.classList.remove('revealed');
@@ -228,7 +215,7 @@ function togglePhoto(card,imgSrc){
   } else {
     card.classList.add('revealed');
     card.style.backgroundImage=`url('${imgSrc}')`;
-    captionEl.innerText=card.dataset.caption;
+    captionEl.innerText = card.dataset.caption;
   }
 }
 </script>
