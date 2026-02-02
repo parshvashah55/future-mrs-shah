@@ -86,15 +86,15 @@
       opacity: 0.7;
     }
 
-    /* Snowflakes */
-    .snowflake {
+    /* Snow / Hearts */
+    .flake {
       position: fixed;
       top: -10px;
-      color: white;
       font-size: 1em;
       opacity: 0.8;
       animation: fall linear infinite;
       z-index: 1;
+      pointer-events: none;
     }
 
     @keyframes fall {
@@ -107,7 +107,7 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background: rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.85);
       border-radius: 50%;
       width: 50px;
       height: 50px;
@@ -120,20 +120,7 @@
 </head>
 <body>
 
-<!-- Snowflakes -->
-<script>
-  for (let i = 0; i < 30; i++) {
-    const snow = document.createElement("div");
-    snow.className = "snowflake";
-    snow.innerHTML = "❄";
-    snow.style.left = Math.random() * 100 + "vw";
-    snow.style.animationDuration = 5 + Math.random() * 5 + "s";
-    snow.style.fontSize = 10 + Math.random() * 20 + "px";
-    document.body.appendChild(snow);
-  }
-</script>
-
-<!-- Music -->
+<!-- Background Music -->
 <audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
@@ -142,23 +129,26 @@
 
 <div class="card">
 
+  <!-- STEP 1 -->
   <div class="step active">
     <h1>Hello Ms. Sheth 🌸</h1>
     <p>
       We’re not in the same place.<br>
       But this still felt worth asking… properly.
     </p>
-    <button onclick="nextStep()">Continue</button>
+    <button onclick="nextStep(true)">Continue</button>
   </div>
 
+  <!-- STEP 2 -->
   <div class="step">
     <h2>Distance can be many things.</h2>
     <p>To you, it feels more like…</p>
-    <button class="option-btn" onclick="nextStep()">A challenge</button>
-    <button class="option-btn" onclick="nextStep()">A test of intention</button>
+    <button class="option-btn" onclick="nextStep(true)">A challenge</button>
+    <button class="option-btn" onclick="nextStep(true)">A test of intention</button>
     <p class="micro-text">I see it the same way.</p>
   </div>
 
+  <!-- STEP 3 -->
   <div class="step">
     <h2>One more thing.</h2>
     <p>
@@ -166,11 +156,12 @@
       despite time zones and schedules —<br>
       does that matter?
     </p>
-    <button class="option-btn" onclick="nextStep()">It does</button>
-    <button class="option-btn" onclick="nextStep()">It really does</button>
+    <button class="option-btn" onclick="nextStep(true)">It does</button>
+    <button class="option-btn" onclick="nextStep(true)">It really does</button>
     <p class="micro-text">Effort travels well.</p>
   </div>
 
+  <!-- STEP 4 -->
   <div class="step">
     <h1>Ms. Sheth,</h1>
     <p>
@@ -179,16 +170,23 @@
     </p>
 
     <div class="final-buttons">
-      <button onclick="nextStep()">YES ❤️</button>
+      <button onclick="yesClicked()">YES ❤️</button>
       <button class="no-btn" id="noBtn">NO 🙃</button>
     </div>
 
     <p class="micro-text">Distance didn’t stop me from asking.</p>
   </div>
 
+  <!-- STEP 5 -->
   <div class="step">
     <h1>Worth every mile ❄️💖</h1>
     <p>Happy Valentine’s Day, Ms. Sheth.</p>
+
+    <p class="micro-text">
+      અંતર માત્ર અંતર છે,<br>
+      લાગણી કદી દૂર નથી.
+    </p>
+
     <p class="micro-text">Until this question is asked in person.</p>
   </div>
 
@@ -197,13 +195,30 @@
 <script>
   let currentStep = 0;
   const steps = document.querySelectorAll(".step");
+  const music = document.getElementById("bgMusic");
+  let musicStarted = false;
+  let heartsMode = false;
 
-  function nextStep() {
+  function nextStep(startMusic) {
+    if (startMusic && !musicStarted) {
+      music.play();
+      musicStarted = true;
+    }
     steps[currentStep].classList.remove("active");
     currentStep++;
     steps[currentStep].classList.add("active");
   }
 
+  function yesClicked() {
+    heartsMode = true;
+    nextStep(true);
+  }
+
+  function toggleMusic() {
+    music.paused ? music.play() : music.pause();
+  }
+
+  // Moving NO button
   const noBtn = document.getElementById("noBtn");
   let moves = 0;
   noBtn.addEventListener("mouseenter", () => {
@@ -213,10 +228,20 @@
     moves++;
   });
 
-  function toggleMusic() {
-    const music = document.getElementById("bgMusic");
-    music.paused ? music.play() : music.pause();
+  // Snow / Heart generator
+  function createFlake() {
+    const flake = document.createElement("div");
+    flake.className = "flake";
+    flake.innerHTML = heartsMode ? "❤️" : "❄";
+    flake.style.left = Math.random() * 100 + "vw";
+    flake.style.fontSize = 10 + Math.random() * 20 + "px";
+    flake.style.animationDuration = 5 + Math.random() * 5 + "s";
+    document.body.appendChild(flake);
+
+    setTimeout(() => flake.remove(), 10000);
   }
+
+  setInterval(createFlake, 300);
 </script>
 
 </body>
