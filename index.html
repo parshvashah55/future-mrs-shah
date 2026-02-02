@@ -78,6 +78,7 @@
       position: absolute;
       left: 55%;
       top: 0;
+      transition: transform 0.2s ease;
     }
 
     .micro-text {
@@ -92,7 +93,9 @@
       top: -10px;
       font-size: 1em;
       opacity: 0.8;
-      animation: fall linear infinite;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
       z-index: 1;
       pointer-events: none;
     }
@@ -181,12 +184,6 @@
   <div class="step">
     <h1>Worth every mile ❄️💖</h1>
     <p>Happy Valentine’s Day, Ms. Sheth.</p>
-
-    <p class="micro-text">
-      અંતર માત્ર અંતર છે,<br>
-      લાગણી કદી દૂર નથી.
-    </p>
-
     <p class="micro-text">Until this question is asked in person.</p>
   </div>
 
@@ -218,26 +215,34 @@
     music.paused ? music.play() : music.pause();
   }
 
-  // Moving NO button
+  // WILD NO BUTTON
   const noBtn = document.getElementById("noBtn");
-  let moves = 0;
   noBtn.addEventListener("mouseenter", () => {
-    if (moves >= 3) return;
-    noBtn.style.transform =
-      `translate(${Math.random()*120-60}px, ${Math.random()*40-20}px)`;
-    moves++;
+    const x = Math.random() * window.innerWidth - noBtn.offsetWidth;
+    const y = Math.random() * window.innerHeight - noBtn.offsetHeight;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
   });
 
-  // Snow / Heart generator
+  // Snow / Heart generator with speed variation
   function createFlake() {
     const flake = document.createElement("div");
     flake.className = "flake";
     flake.innerHTML = heartsMode ? "❤️" : "❄";
     flake.style.left = Math.random() * 100 + "vw";
     flake.style.fontSize = 10 + Math.random() * 20 + "px";
-    flake.style.animationDuration = 5 + Math.random() * 5 + "s";
-    document.body.appendChild(flake);
 
+    if (!heartsMode) {
+      const colors = ["#a3d4ff", "#66b2ff", "#3399ff", "#4da6ff"];
+      flake.style.color = colors[Math.floor(Math.random() * colors.length)];
+
+      // Vary falling speed by color/lightness
+      const speed = 4 + Math.random() * 4; // 4s to 8s
+      flake.style.animationDuration = speed + "s";
+    } else {
+      flake.style.animationDuration = 5 + Math.random() * 5 + "s";
+    }
+
+    document.body.appendChild(flake);
     setTimeout(() => flake.remove(), 10000);
   }
 
