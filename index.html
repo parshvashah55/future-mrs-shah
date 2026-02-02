@@ -3,121 +3,221 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For Hiral 💖</title>
+  <title>For Ms. Sheth ❄️</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ffe6ec, #fff);
-      color: #333;
+      background: linear-gradient(135deg, #ffe6ec, #ffffff);
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      color: #333;
     }
+
     .card {
-      background: white;
-      padding: 30px;
-      max-width: 420px;
+      background: #fff;
       width: 90%;
-      border-radius: 18px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+      max-width: 420px;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
       text-align: center;
+      position: relative;
+      z-index: 2;
     }
+
     h1, h2 {
       font-family: 'Playfair Display', serif;
-      margin-bottom: 10px;
     }
+
     p {
       font-size: 15px;
       line-height: 1.6;
     }
+
+    .step { display: none; }
+    .step.active { display: block; }
+
     button {
       margin-top: 20px;
-      padding: 12px 24px;
+      padding: 12px 26px;
       border: none;
       border-radius: 30px;
-      background: #ff4d6d;
-      color: white;
       font-size: 15px;
       cursor: pointer;
-      transition: transform 0.2s, background 0.2s;
+      background: #ff4d6d;
+      color: white;
+      transition: all 0.25s ease;
     }
-    button:hover {
-      background: #e63e5c;
-      transform: scale(1.05);
+
+    button:hover { transform: scale(1.05); }
+
+    .option-btn {
+      display: block;
+      width: 100%;
+      margin-top: 12px;
+      background: #f3f3f3;
+      color: #333;
     }
-    .question {
-      display: none;
+
+    .final-buttons {
+      margin-top: 30px;
+      position: relative;
+      height: 120px;
     }
-    .heart {
-      font-size: 28px;
-      animation: pulse 1.5s infinite;
+
+    .no-btn {
+      background: #ccc;
+      color: #333;
+      position: absolute;
+      left: 55%;
+      top: 0;
     }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
+
+    .micro-text {
+      font-size: 12px;
+      margin-top: 12px;
+      opacity: 0.7;
+    }
+
+    /* Snowflakes */
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      color: white;
+      font-size: 1em;
+      opacity: 0.8;
+      animation: fall linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(110vh); }
+    }
+
+    /* Music button */
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      cursor: pointer;
+      border: none;
+      z-index: 3;
     }
   </style>
 </head>
 <body>
 
-  <div class="card">
-    <div id="step1">
-      <h1>Hi Hiral 🌸</h1>
-      <p>
-        I made something small but meaningful…  
-        because some questions are better asked this way.
-      </p>
-      <button onclick="nextStep(2)">Continue</button>
-    </div>
+<!-- Snowflakes -->
+<script>
+  for (let i = 0; i < 30; i++) {
+    const snow = document.createElement("div");
+    snow.className = "snowflake";
+    snow.innerHTML = "❄";
+    snow.style.left = Math.random() * 100 + "vw";
+    snow.style.animationDuration = 5 + Math.random() * 5 + "s";
+    snow.style.fontSize = 10 + Math.random() * 20 + "px";
+    document.body.appendChild(snow);
+  }
+</script>
 
-    <div id="step2" class="question">
-      <h2>Quick question 💭</h2>
-      <p>Do you believe little moments can mean a lot?</p>
-      <button onclick="nextStep(3)">I do</button>
-    </div>
+<!-- Music -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
-    <div id="step3" class="question">
-      <h2>Another one 😊</h2>
-      <p>
-        If someone makes you smile without trying too hard…  
-        is that special?
-      </p>
-      <button onclick="nextStep(4)">Yes, it is</button>
-    </div>
+<button class="music-btn" onclick="toggleMusic()">🎶</button>
 
-    <div id="step4" class="question">
-      <h2>Almost there 💖</h2>
-      <p>
-        Would you say Valentine's Day is better  
-        when shared with the right person?
-      </p>
-      <button onclick="nextStep(5)">Definitely</button>
-    </div>
+<div class="card">
 
-    <div id="step5" class="question">
-      <h1>So…</h1>
-      <p>
-        Hiral,<br><br>
-        would you make this Valentine’s Day a little more special…
-      </p>
-      <h2>Will you be my Valentine? 💘</h2>
-      <div class="heart">❤️</div>
-      <button onclick="alert('Best answer ever 💕')">Yes</button>
-    </div>
+  <div class="step active">
+    <h1>Hello Ms. Sheth 🌸</h1>
+    <p>
+      We’re not in the same place.<br>
+      But this still felt worth asking… properly.
+    </p>
+    <button onclick="nextStep()">Continue</button>
   </div>
 
-  <script>
-    function nextStep(step) {
-      document.querySelectorAll('.card > div').forEach(div => {
-        div.style.display = 'none';
-      });
-      document.getElementById('step' + step).style.display = 'block';
-    }
-  </script>
+  <div class="step">
+    <h2>Distance can be many things.</h2>
+    <p>To you, it feels more like…</p>
+    <button class="option-btn" onclick="nextStep()">A challenge</button>
+    <button class="option-btn" onclick="nextStep()">A test of intention</button>
+    <p class="micro-text">I see it the same way.</p>
+  </div>
+
+  <div class="step">
+    <h2>One more thing.</h2>
+    <p>
+      When someone makes time —<br>
+      despite time zones and schedules —<br>
+      does that matter?
+    </p>
+    <button class="option-btn" onclick="nextStep()">It does</button>
+    <button class="option-btn" onclick="nextStep()">It really does</button>
+    <p class="micro-text">Effort travels well.</p>
+  </div>
+
+  <div class="step">
+    <h1>Ms. Sheth,</h1>
+    <p>
+      even with the miles between us…<br>
+      will you be my Valentine?
+    </p>
+
+    <div class="final-buttons">
+      <button onclick="nextStep()">YES ❤️</button>
+      <button class="no-btn" id="noBtn">NO 🙃</button>
+    </div>
+
+    <p class="micro-text">Distance didn’t stop me from asking.</p>
+  </div>
+
+  <div class="step">
+    <h1>Worth every mile ❄️💖</h1>
+    <p>Happy Valentine’s Day, Ms. Sheth.</p>
+    <p class="micro-text">Until this question is asked in person.</p>
+  </div>
+
+</div>
+
+<script>
+  let currentStep = 0;
+  const steps = document.querySelectorAll(".step");
+
+  function nextStep() {
+    steps[currentStep].classList.remove("active");
+    currentStep++;
+    steps[currentStep].classList.add("active");
+  }
+
+  const noBtn = document.getElementById("noBtn");
+  let moves = 0;
+  noBtn.addEventListener("mouseenter", () => {
+    if (moves >= 3) return;
+    noBtn.style.transform =
+      `translate(${Math.random()*120-60}px, ${Math.random()*40-20}px)`;
+    moves++;
+  });
+
+  function toggleMusic() {
+    const music = document.getElementById("bgMusic");
+    music.paused ? music.play() : music.pause();
+  }
+</script>
 
 </body>
 </html>
