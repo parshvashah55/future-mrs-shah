@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For You 💌</title>
+<title>For Ms. Sheth 💖</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -12,120 +12,133 @@ body{
   margin:0;
   font-family:'Poppins',sans-serif;
   background:linear-gradient(120deg,#ffe6f0,#e6f0ff,#fff);
+  min-height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  min-height:100vh;
+  overflow-x:hidden;
 }
-
 .card{
+  background:linear-gradient(145deg,#fff,#fff0f5);
   width:90%;
   max-width:480px;
-  background:linear-gradient(145deg,#ffffff,#fff0f5);
-  padding:32px;
-  border-radius:28px;
-  box-shadow:0 30px 60px rgba(0,0,0,0.18);
+  padding:28px;
+  border-radius:26px;
+  box-shadow:0 25px 50px rgba(0,0,0,.2);
   text-align:center;
 }
-
 .step{display:none;}
 .step.active{display:block;}
 
-h1,h2{font-family:'Playfair Display',serif;}
+h1,h2{
+  font-family:'Playfair Display',serif;
+}
 
 button{
-  margin-top:24px;
   padding:14px 36px;
   border:none;
   border-radius:40px;
+  background:linear-gradient(135deg,#ff4d6d,#ff85a1);
+  color:white;
   font-size:16px;
   cursor:pointer;
-  background:linear-gradient(135deg,#ff4d6d,#ff758f);
-  color:#fff;
+  margin-top:24px;
 }
 
 /* Envelope */
 .envelope{
   font-size:90px;
   cursor:pointer;
-  transition:transform .5s;
+  animation:wiggle 2s infinite;
 }
-.envelope.open{transform:rotateX(25deg) scale(1.1);}
-
+@keyframes wiggle{
+  0%,100%{transform:rotate(0)}
+  50%{transform:rotate(-5deg)}
+}
 .letter{
   display:none;
-  background:#fff0f5;
+  margin-top:20px;
+  background:#fff0f6;
+  padding:18px;
   border-radius:18px;
-  padding:20px;
-  margin-top:18px;
-  font-size:14px;
-  line-height:1.8;
+  line-height:1.7;
 }
 
 /* Photos */
 .photos{
   display:flex;
-  gap:14px;
+  gap:12px;
   justify-content:center;
-  flex-wrap:wrap;
+  margin-top:20px;
 }
-
 .photo-card{
-  width:100px;
-  height:130px;
-  border-radius:18px;
-  background:linear-gradient(135deg,#ffdee9,#c9e4ff);
+  width:90px;
+  height:120px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#ffd6e8,#cce4ff);
   position:relative;
-  overflow:hidden;
   cursor:pointer;
+  overflow:hidden;
 }
-
-.photo-card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0;
-  transition:.4s;
-}
-
-.photo-card.revealed img{opacity:1;}
-
-.photo-card.revealed{
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:85vw;
-  max-width:420px;
-  height:60vh;
-  z-index:999;
-}
-
 .sticker{
   position:absolute;
-  font-size:14px;
-  opacity:.85;
-  pointer-events:none;
+  font-size:18px;
+}
+.photo-card img{
+  display:none;
 }
 
-.valentine-text{
-  font-size:30px;
-  background:linear-gradient(135deg,#ff4d6d,#ff8fa3);
+/* Fullscreen photo */
+.viewer{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.75);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+.viewer img{
+  max-width:90vw;
+  max-height:80vh;
+  border-radius:20px;
+}
+.viewer p{
+  color:white;
+  margin-top:14px;
+  font-size:14px;
+  text-align:center;
+}
+
+/* Valentine */
+.val-text{
+  font-size:32px;
+  font-weight:700;
+  background:linear-gradient(135deg,#ff4d6d,#ff9db0);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  font-weight:700;
 }
-
+.final-buttons{
+  position:relative;
+  height:160px;
+  margin-top:40px;
+}
 .yes-btn{
   font-size:20px;
   padding:20px 56px;
+  animation:glow 1.5s infinite;
 }
-
+@keyframes glow{
+  0%{box-shadow:0 0 10px #ff4d6d}
+  50%{box-shadow:0 0 30px #ff85a1}
+  100%{box-shadow:0 0 10px #ff4d6d}
+}
 .no-btn{
   background:#ccc;
   color:#333;
   position:absolute;
   left:60%;
+  top:0;
 }
 </style>
 </head>
@@ -136,11 +149,8 @@ button{
 
 <!-- PAGE 1 -->
 <div class="step active">
-  <h1>Hey You 🌸</h1>
-  <p>
-    Even though we are not at the same place,<br>
-    I want to do this properly.
-  </p>
+  <h1>Hello Ms. Sheth 🌸</h1>
+  <p>Even though we are not at the same place, I want to do this properly 💌</p>
   <button onclick="next()">Continue</button>
 </div>
 
@@ -148,120 +158,113 @@ button{
 <div class="step">
   <h2>You Have Mail 💌</h2>
   <div class="envelope" onclick="openLetter()">✉️</div>
-  <p>(Click to open)</p>
-
+  <p>(Click the envelope)</p>
   <div class="letter" id="letter">
-    <p>
-      My life changed when I met you. 💖<br><br>
-
-      From your teasing first “Sorry I can’t come” 😅  
-      to “I don’t want you to go” 🥺 — everything feels like a dream.<br><br>
-
-      From that 2nd hug 🤍, those kissing lessons 😏,  
-      that jungliyat 🐾 and besharmi 😜  
-      to that “tu bau pyaaro pyaaro lage che” 💕<br><br>
-
-      All of these within a month…  
-      so magical that I can’t wait to spend the rest of our life together ✨<br><br>
-
-      Even across distance, you are my constant 🌍💌
-    </p>
+    <strong>20th December 2025 · 1:15 PM</strong><br><br>
+    My life changed when I met you 🌸  
+    From “Sorry I can’t come” 😅 to “I don’t want you to go” 🥺…  
+    From that 2nd hug 🤗, kissing lessons 😏, jungliyat 🐾 and besharmi 😜  
+    to “tu bau pyaaro pyaaro lage che” 💖  
+    All of it within one magical month ✨  
+    Even across distance, you are my constant 💌  
+    <br><br>
     <button onclick="next()">Continue</button>
   </div>
 </div>
 
 <!-- PAGE 3 -->
 <div class="step">
-  <h2>Our Moments 📸</h2>
-  <p>Click to reveal 💖</p>
+  <h2>Our Special Moments 📸</h2>
+  <p>Tap to reveal ✨</p>
 
   <div class="photos">
-    <div class="photo-card">
-      <img src="https://parshvashah55.github.io/future-mrs-shah/photo1.jpg"
-           data-caption="The one with ‘bhaade k flowers’ 🌸💐">
+    <div class="photo-card" onclick="showPhoto(0)">
+      <span class="sticker">💖</span><span class="sticker" style="top:60%;left:50%">⭐</span>
+      <img src="https://parshvashah55.github.io/future-mrs-shah/photo1.jpg" alt="">
     </div>
-
-    <div class="photo-card">
-      <img src="https://parshvashah55.github.io/future-mrs-shah/photo2.jpg"
-           data-caption="The one where I can’t get enough of your pappies so need different angles 😅📸">
+    <div class="photo-card" onclick="showPhoto(1)">
+      <span class="sticker">🦋</span><span class="sticker" style="top:50%;left:20%">✨</span>
+      <img src="https://parshvashah55.github.io/future-mrs-shah/photo2.jpg" alt="">
     </div>
-
-    <div class="photo-card">
-      <img src="https://parshvashah55.github.io/future-mrs-shah/photo3.jpg"
-           data-caption="The one where I found out just how much of a Junglee you are 🐾🔥">
+    <div class="photo-card" onclick="showPhoto(2)">
+      <span class="sticker">🌸</span><span class="sticker" style="top:30%;left:60%">💫</span>
+      <img src="https://parshvashah55.github.io/future-mrs-shah/photo3.jpg" alt="">
     </div>
   </div>
 
-  <p id="caption" style="font-size:13px;margin-top:10px;"></p>
+  <p style="font-size:13px;margin-top:16px;">
+    These are only 3 of them,<br>but thousands more to go 💕
+  </p>
 
   <button onclick="next()">Continue</button>
 </div>
 
 <!-- PAGE 4 -->
 <div class="step">
-  <h1 class="valentine-text">Will you be my Valentine?</h1>
-  <div style="margin-top:40px;position:relative;height:120px;">
-    <button class="yes-btn" onclick="yes()">YES ❤️</button>
-    <button class="no-btn" id="no">NO 🙃</button>
+  <h1 class="val-text">Will you be my Valentine?</h1>
+  <div class="final-buttons">
+    <button class="yes-btn" onclick="next()">YES ❤️</button>
+    <button class="no-btn" id="noBtn">NO 🙃</button>
   </div>
 </div>
 
 <!-- PAGE 5 -->
 <div class="step">
   <h1>YOU SAID YESSS 💖💖💖</h1>
-  <p style="line-height:1.8;margin-top:20px;">
-    And just like that… you’ve officially signed up for the next 50 Valentine’s Days 😌  
-    (No take backsies now 😉)<br><br>
-
-    From our endless bakwas 😜, teasing, chaos, laughs,  
-    to all the love and madness still waiting for us 💫<br><br>
-
-    You make even the simplest days magical ✨  
-    and I can’t wait for a lifetime of little crazy moments with you 💖<br><br>
-
-    — With so much love,<br>
-    <strong>your Chikudo 🐣❤️</strong>
+  <p style="line-height:1.8;">
+    You’re officially locked in for the next 50 Valentine’s Days 😏  
+    From our endless bakwas 😜 to teasing fights, madness, love and magic ✨  
+    I wouldn’t want this chaos with anyone else 💞  
+    <br><br>
+    — With so much love,  
+    your Chikudo 🐣💖
   </p>
 </div>
 
 </div>
 
+<!-- PHOTO VIEWER -->
+<div class="viewer" id="viewer" onclick="closeViewer()">
+  <div>
+    <img id="viewerImg">
+    <p id="viewerCap"></p>
+  </div>
+</div>
+
 <script>
-let i=0;
+let step=0;
 const steps=document.querySelectorAll('.step');
-function next(){steps[i++].classList.remove('active');steps[i].classList.add('active');}
-function openLetter(){document.getElementById('letter').style.display='block';}
-function yes(){next();}
+function next(){
+  steps[step].classList.remove('active');
+  step++;
+  steps[step].classList.add('active');
+}
+function openLetter(){
+  document.getElementById('letter').style.display='block';
+}
 
-const no=document.getElementById('no');
-no.addEventListener('mouseenter',()=>{
-  no.style.transform=`translate(${Math.random()*120-60}px,${Math.random()*40-20}px)`;
-});
+const captions=[
+  "The one with ‘bhaade k flowers’ 🌸💐",
+  "The one where I can’t get enough of your puppies 🐶📸",
+  "The one where I discovered your junglee side 🐾🔥"
+];
+function showPhoto(i){
+  const img=document.querySelectorAll('.photo-card img')[i];
+  document.getElementById('viewerImg').src=img.src;
+  document.getElementById('viewerCap').innerText=captions[i];
+  document.getElementById('viewer').style.display='flex';
+}
+function closeViewer(){
+  document.getElementById('viewer').style.display='none';
+}
 
-const cards=document.querySelectorAll('.photo-card');
-const cap=document.getElementById('caption');
-const stickers=["💖","⭐","🌸","🦋","✨"];
-
-cards.forEach(card=>{
-  for(let i=0;i<5;i++){
-    const s=document.createElement('span');
-    s.className="sticker";
-    s.innerText=stickers[Math.floor(Math.random()*stickers.length)];
-    s.style.top=Math.random()*70+"%";
-    s.style.left=Math.random()*70+"%";
-    card.appendChild(s);
-  }
-  card.onclick=()=>{
-    if(card.classList.contains('revealed')){
-      card.classList.remove('revealed');
-      cap.innerText="";
-    }else{
-      cards.forEach(c=>c.classList.remove('revealed'));
-      card.classList.add('revealed');
-      cap.innerText=card.querySelector('img').dataset.caption;
-    }
-  };
-});
+let h=0;
+const no=document.getElementById('noBtn');
+no.onmouseenter=()=>{
+  h++;
+  no.style.transform=`translate(${Math.random()*100-50}px,${Math.random()*60-30}px) scale(${Math.max(0.3,1-h*0.25)})`;
+  if(h>=3) no.style.display='none';
+};
 </script>
 
 </body>
