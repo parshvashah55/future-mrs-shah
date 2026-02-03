@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Ms. Sheth 💌</title>
+<title>For You 💌</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -16,7 +16,6 @@ body{
   justify-content:center;
   align-items:center;
   min-height:100vh;
-  overflow-x:hidden;
 }
 
 .card{
@@ -27,8 +26,6 @@ body{
   border-radius:28px;
   box-shadow:0 30px 60px rgba(0,0,0,0.18);
   text-align:center;
-  position:relative;
-  z-index:2;
 }
 
 .step{display:none;}
@@ -47,40 +44,17 @@ button{
   color:#fff;
 }
 
-.music-btn{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  width:50px;
-  height:50px;
-  border-radius:50%;
-  border:none;
-  font-size:20px;
-  background:#fff;
-  cursor:pointer;
-  z-index:5;
-}
-
 /* Envelope */
-.mail-box{
-  background:linear-gradient(135deg,#ffe0ec,#e0f0ff);
-  border-radius:22px;
-  padding:26px;
-}
-
 .envelope{
   font-size:90px;
   cursor:pointer;
   transition:transform .5s;
 }
-
-.envelope.open{
-  transform:rotateX(25deg) scale(1.1);
-}
+.envelope.open{transform:rotateX(25deg) scale(1.1);}
 
 .letter{
   display:none;
-  background:linear-gradient(135deg,#fff0f5,#ffe6ec);
+  background:#fff0f5;
   border-radius:18px;
   padding:20px;
   margin-top:18px;
@@ -88,13 +62,12 @@ button{
   line-height:1.8;
 }
 
-/* PHOTOS */
+/* Photos */
 .photos{
   display:flex;
   gap:14px;
   justify-content:center;
   flex-wrap:wrap;
-  margin-top:20px;
 }
 
 .photo-card{
@@ -102,7 +75,6 @@ button{
   height:130px;
   border-radius:18px;
   background:linear-gradient(135deg,#ffdee9,#c9e4ff);
-  box-shadow:0 8px 18px rgba(0,0,0,0.18);
   position:relative;
   overflow:hidden;
   cursor:pointer;
@@ -113,25 +85,20 @@ button{
   height:100%;
   object-fit:cover;
   opacity:0;
-  transform:scale(0.9);
-  transition:all .4s ease;
+  transition:.4s;
 }
 
-.photo-card.revealed img{
-  opacity:1;
-  transform:scale(1);
-}
+.photo-card.revealed img{opacity:1;}
 
 .photo-card.revealed{
   position:fixed;
   top:50%;
   left:50%;
+  transform:translate(-50%,-50%);
   width:85vw;
   max-width:420px;
   height:60vh;
-  transform:translate(-50%,-50%);
   z-index:999;
-  background:#fff;
 }
 
 .sticker{
@@ -141,37 +108,17 @@ button{
   pointer-events:none;
 }
 
-.photo-caption{
-  margin-top:10px;
-  font-size:13px;
-}
-
-/* Valentine */
 .valentine-text{
-  font-size:32px;
+  font-size:30px;
   background:linear-gradient(135deg,#ff4d6d,#ff8fa3);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   font-weight:700;
 }
 
-.final-buttons{
-  margin-top:40px;
-  position:relative;
-  height:170px;
-}
-
 .yes-btn{
   font-size:20px;
   padding:20px 56px;
-  background:linear-gradient(135deg,#ff4d6d,#ff85a1);
-  animation:glow 1.5s infinite;
-}
-
-@keyframes glow{
-  0%{box-shadow:0 0 12px #ff4d6d;}
-  50%{box-shadow:0 0 30px #ff85a1;}
-  100%{box-shadow:0 0 12px #ff4d6d;}
 }
 
 .no-btn{
@@ -179,68 +126,54 @@ button{
   color:#333;
   position:absolute;
   left:60%;
-  top:0;
-}
-
-/* Floating emojis */
-.float{
-  position:fixed;
-  top:-20px;
-  animation:fall linear infinite;
-  pointer-events:none;
-}
-
-@keyframes fall{
-  0%{transform:translateY(0);}
-  100%{transform:translateY(110vh);}
-}
-
-@media(max-width:500px){
-  .photo-card{width:80px;height:110px;}
-  .valentine-text{font-size:24px;}
 }
 </style>
 </head>
 
 <body>
 
-<audio id="bgMusic" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-<button class="music-btn" onclick="toggleMusic()">🎶</button>
-
 <div class="card">
 
 <!-- PAGE 1 -->
 <div class="step active">
-  <h1>Hello Ms. Sheth 🌸</h1>
-  <p>Even though we are not at the same place, I want to do this properly 💌</p>
-  <button onclick="nextStep(true)">Continue</button>
+  <h1>Hey You 🌸</h1>
+  <p>
+    Even though we are not at the same place,<br>
+    I want to do this properly.
+  </p>
+  <button onclick="next()">Continue</button>
 </div>
 
 <!-- PAGE 2 -->
 <div class="step">
   <h2>You Have Mail 💌</h2>
-  <div class="mail-box">
-    <div class="envelope" id="envelope" onclick="openLetter()">✉️</div>
-    <p>(Click to open)</p>
-    <div class="letter" id="letter">
-      <strong>20th December 2025 · 1:15 PM</strong><br><br>
-      My life changed when I met you 🌸<br>
-      From “Sorry I can’t come” 😅 to “I don’t want you to go” 🥺<br>
-      From that 2nd hug 🤗, kissing lessons 😏, jungliyat 🐾, besharmi 😜<br>
-      to “tu bau pyaaro pyaaro lage che” 💖<br><br>
+  <div class="envelope" onclick="openLetter()">✉️</div>
+  <p>(Click to open)</p>
+
+  <div class="letter" id="letter">
+    <p>
+      My life changed when I met you. 💖<br><br>
+
+      From your teasing first “Sorry I can’t come” 😅  
+      to “I don’t want you to go” 🥺 — everything feels like a dream.<br><br>
+
+      From that 2nd hug 🤍, those kissing lessons 😏,  
+      that jungliyat 🐾 and besharmi 😜  
+      to that “tu bau pyaaro pyaaro lage che” 💕<br><br>
+
+      All of these within a month…  
+      so magical that I can’t wait to spend the rest of our life together ✨<br><br>
+
       Even across distance, you are my constant 🌍💌
-      <br><br>
-      <button onclick="nextStep(true)">Continue</button>
-    </div>
+    </p>
+    <button onclick="next()">Continue</button>
   </div>
 </div>
 
 <!-- PAGE 3 -->
 <div class="step">
-  <h2>Our Special Moments 📸</h2>
-  <p>Click each photo to reveal our memories ✨</p>
+  <h2>Our Moments 📸</h2>
+  <p>Click to reveal 💖</p>
 
   <div class="photos">
     <div class="photo-card">
@@ -250,7 +183,7 @@ button{
 
     <div class="photo-card">
       <img src="https://parshvashah55.github.io/future-mrs-shah/photo2.jpg"
-           data-caption="The one where I can’t get enough of your puppies 🐶📸 😅">
+           data-caption="The one where I can’t get enough of your pappies so need different angles 😅📸">
     </div>
 
     <div class="photo-card">
@@ -259,101 +192,58 @@ button{
     </div>
   </div>
 
-  <div id="photo-caption" class="photo-caption"></div>
+  <p id="caption" style="font-size:13px;margin-top:10px;"></p>
 
-  <p style="font-size:13px;margin-top:18px;">
-    These are only 3 of them,<br>but thousands more to go.
-  </p>
-
-  <button onclick="nextStep(true)">Continue</button>
+  <button onclick="next()">Continue</button>
 </div>
 
 <!-- PAGE 4 -->
 <div class="step">
   <h1 class="valentine-text">Will you be my Valentine?</h1>
-  <div class="final-buttons">
-    <button class="yes-btn" onclick="yesClicked()">YES ❤️</button>
-    <button class="no-btn" id="noBtn">NO 🙃</button>
+  <div style="margin-top:40px;position:relative;height:120px;">
+    <button class="yes-btn" onclick="yes()">YES ❤️</button>
+    <button class="no-btn" id="no">NO 🙃</button>
   </div>
 </div>
 
 <!-- PAGE 5 -->
 <div class="step">
   <h1>YOU SAID YESSS 💖💖💖</h1>
-  <p style="font-size:15px;line-height:1.8;margin-top:20px;">
-    From our endless bakwas 😜 to teasing fights 😏,<br>
-    messy laughs, chaos, love, and everything in between 💫<br><br>
-    No take backs. No refunds. You’re stuck with me now 😌❤️<br><br>
-    — With so much love, your Chikudo 🐣💖
+  <p style="line-height:1.8;margin-top:20px;">
+    And just like that… you’ve officially signed up for the next 50 Valentine’s Days 😌  
+    (No take backsies now 😉)<br><br>
+
+    From our endless bakwas 😜, teasing, chaos, laughs,  
+    to all the love and madness still waiting for us 💫<br><br>
+
+    You make even the simplest days magical ✨  
+    and I can’t wait for a lifetime of little crazy moments with you 💖<br><br>
+
+    — With so much love,<br>
+    <strong>your Chikudo 🐣❤️</strong>
   </p>
 </div>
 
 </div>
 
 <script>
-let step=0;
+let i=0;
 const steps=document.querySelectorAll('.step');
-const music=document.getElementById('bgMusic');
-let started=false;
+function next(){steps[i++].classList.remove('active');steps[i].classList.add('active');}
+function openLetter(){document.getElementById('letter').style.display='block';}
+function yes(){next();}
 
-function nextStep(play){
-  if(play && !started){music.play();started=true;}
-  steps[step].classList.remove('active');
-  step++;
-  steps[step].classList.add('active');
-}
-
-function toggleMusic(){music.paused?music.play():music.pause();}
-function openLetter(){
-  document.getElementById('envelope').classList.add('open');
-  document.getElementById('letter').style.display='block';
-}
-
-function yesClicked(){
-  for(let i=0;i<40;i++)setTimeout(confetti,i*30);
-  nextStep(true);
-}
-
-const noBtn=document.getElementById('noBtn');
-let hovers=0;
-noBtn.addEventListener('mouseenter',()=>{
-  hovers++;
-  const s=Math.max(.3,1-hovers*.25);
-  noBtn.style.transform=`translate(${Math.random()*120-60}px,${Math.random()*40-20}px) scale(${s})`;
-  if(hovers>=3)noBtn.style.zIndex=-1;
+const no=document.getElementById('no');
+no.addEventListener('mouseenter',()=>{
+  no.style.transform=`translate(${Math.random()*120-60}px,${Math.random()*40-20}px)`;
 });
 
-/* Floating */
-const floats=["💖","⭐","🌸","🦋","✨","❄️"];
-setInterval(()=>{
-  const f=document.createElement("div");
-  f.className="float";
-  f.innerText=floats[Math.floor(Math.random()*floats.length)];
-  f.style.left=Math.random()*100+"vw";
-  f.style.fontSize=16+Math.random()*24+"px";
-  f.style.animationDuration=6+Math.random()*6+"s";
-  document.body.appendChild(f);
-  setTimeout(()=>f.remove(),12000);
-},220);
-
-function confetti(){
-  const c=document.createElement("div");
-  c.className="float";
-  c.innerText=["🎉","💘","✨"][Math.floor(Math.random()*3)];
-  c.style.left=Math.random()*100+"vw";
-  c.style.fontSize=20+Math.random()*20+"px";
-  c.style.animationDuration="4s";
-  document.body.appendChild(c);
-  setTimeout(()=>c.remove(),8000);
-}
-
-/* Photo logic */
 const cards=document.querySelectorAll('.photo-card');
-const caption=document.getElementById('photo-caption');
-const stickers=["💖","⭐","🌸","🦋","✨","💙"];
+const cap=document.getElementById('caption');
+const stickers=["💖","⭐","🌸","🦋","✨"];
 
 cards.forEach(card=>{
-  for(let i=0;i<6;i++){
+  for(let i=0;i<5;i++){
     const s=document.createElement('span');
     s.className="sticker";
     s.innerText=stickers[Math.floor(Math.random()*stickers.length)];
@@ -361,17 +251,16 @@ cards.forEach(card=>{
     s.style.left=Math.random()*70+"%";
     card.appendChild(s);
   }
-
-  card.addEventListener('click',()=>{
+  card.onclick=()=>{
     if(card.classList.contains('revealed')){
       card.classList.remove('revealed');
-      caption.innerText="";
+      cap.innerText="";
     }else{
       cards.forEach(c=>c.classList.remove('revealed'));
       card.classList.add('revealed');
-      caption.innerText=card.querySelector('img').dataset.caption;
+      cap.innerText=card.querySelector('img').dataset.caption;
     }
-  });
+  };
 });
 </script>
 
