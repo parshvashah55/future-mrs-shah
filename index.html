@@ -5,14 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Ms. Sheth 💖</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box}
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
-  background:radial-gradient(circle at top,#ffe6f0,#e6f0ff,#fff);
+  background:linear-gradient(120deg,#ffe6f0,#e6f0ff,#fff);
   min-height:100vh;
   display:flex;
   justify-content:center;
@@ -20,54 +19,62 @@ body{
   overflow-x:hidden;
 }
 .card{
-  background:linear-gradient(145deg,#ffffff,#fff0f6);
+  background:linear-gradient(145deg,#fff,#fff0f5);
   width:92%;
   max-width:480px;
   padding:28px;
-  border-radius:30px;
-  box-shadow:0 30px 70px rgba(0,0,0,.25);
+  border-radius:28px;
+  box-shadow:0 30px 60px rgba(0,0,0,.25);
   text-align:center;
-  position:relative;
-  z-index:2;
 }
-.step{display:none;animation:fadeIn .6s ease}
-.step.active{display:block}
-@keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+.step{display:none;}
+.step.active{display:block;}
 
-h1,h2{font-family:'Playfair Display',serif}
+h1,h2{font-family:'Playfair Display',serif;}
 
 button{
-  padding:15px 38px;
+  padding:14px 36px;
   border:none;
-  border-radius:45px;
-  background:linear-gradient(135deg,#ff4d6d,#ff8fa3);
+  border-radius:40px;
+  background:linear-gradient(135deg,#ff4d6d,#ff85a1);
   color:white;
   font-size:16px;
   cursor:pointer;
-  margin-top:26px;
-  transition:.25s;
+  margin-top:24px;
 }
-button:hover{transform:scale(1.05)}
 
-.envelope{
-  font-size:96px;
+/* ---------- Envelope Animation ---------- */
+.envelope-wrap{
+  position:relative;
+  font-size:90px;
   cursor:pointer;
-  animation:bounce 1.8s infinite;
+  animation:float 2.5s ease-in-out infinite;
 }
-@keyframes bounce{
+@keyframes float{
   0%,100%{transform:translateY(0)}
   50%{transform:translateY(-8px)}
 }
+.envelope-open{
+  animation:tear .6s forwards;
+}
+@keyframes tear{
+  to{transform:scale(1.05) rotate(-4deg)}
+}
 .letter{
   display:none;
-  margin-top:20px;
-  background:linear-gradient(135deg,#fff0f6,#ffe6ee);
-  padding:20px;
+  margin-top:22px;
+  background:#fff0f6;
+  padding:18px;
   border-radius:20px;
   line-height:1.75;
-  box-shadow:0 10px 25px rgba(0,0,0,.15);
+  animation:slideUp .8s ease forwards;
+}
+@keyframes slideUp{
+  from{opacity:0; transform:translateY(20px)}
+  to{opacity:1; transform:translateY(0)}
 }
 
+/* ---------- Photos ---------- */
 .photos{
   display:flex;
   gap:14px;
@@ -81,19 +88,18 @@ button:hover{transform:scale(1.05)}
   background:linear-gradient(135deg,#ffd6e8,#cce4ff);
   position:relative;
   cursor:pointer;
-  overflow:hidden;
-  box-shadow:0 8px 20px rgba(0,0,0,.18);
 }
 .sticker{
   position:absolute;
   font-size:18px;
 }
-.photo-card img{display:none}
+.photo-card img{display:none;}
 
+/* ---------- Fullscreen Viewer ---------- */
 .viewer{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.8);
+  background:rgba(0,0,0,.75);
   display:none;
   justify-content:center;
   align-items:center;
@@ -102,17 +108,18 @@ button:hover{transform:scale(1.05)}
 .viewer img{
   max-width:90vw;
   max-height:80vh;
-  border-radius:22px;
-  box-shadow:0 25px 50px rgba(0,0,0,.5);
+  border-radius:20px;
 }
 .viewer p{
   color:white;
   margin-top:14px;
   font-size:14px;
-  text-align:center;
+  opacity:0;
+  animation:fadeIn .6s ease .4s forwards;
 }
+@keyframes fadeIn{to{opacity:1}}
 
-/* Valentine */
+/* ---------- Valentine Page ---------- */
 .val-text{
   font-size:34px;
   font-weight:700;
@@ -122,55 +129,42 @@ button:hover{transform:scale(1.05)}
 }
 .final-buttons{
   position:relative;
-  height:170px;
-  margin-top:44px;
+  height:180px;
+  margin-top:40px;
 }
-
-/* YES heartbeat */
 .yes-btn{
   font-size:22px;
-  padding:22px 60px;
-  animation:heartbeat 1.8s infinite;
+  padding:22px 64px;
+  animation:glow 1.5s infinite;
 }
-@keyframes heartbeat{
-  0%{transform:scale(1)}
-  10%{transform:scale(1.08)}
-  20%{transform:scale(1)}
-  30%{transform:scale(1.12)}
-  40%{transform:scale(1)}
+@keyframes glow{
+  0%{box-shadow:0 0 12px #ff4d6d}
+  50%{box-shadow:0 0 36px #ff85a1}
+  100%{box-shadow:0 0 12px #ff4d6d}
 }
-
-/* NO */
 .no-btn{
-  background:#ccc;
+  background:#ddd;
   color:#333;
   position:absolute;
   left:60%;
-  top:0;
 }
 
-.float{
-  position:fixed;
-  top:-20px;
-  pointer-events:none;
-  animation:fall linear forwards;
+/* ---------- Signature ---------- */
+.signature{
+  font-family:'Pacifico',cursive;
+  font-size:26px;
+  margin-top:16px;
+  opacity:0;
+  animation:write 2s ease forwards;
 }
-@keyframes fall{
-  to{transform:translateY(110vh)}
-}
-
-@media(max-width:500px){
-  .photo-card{width:80px;height:110px}
-  .val-text{font-size:26px}
+@keyframes write{
+  from{opacity:0; clip-path:inset(0 100% 0 0)}
+  to{opacity:1; clip-path:inset(0 0 0 0)}
 }
 </style>
 </head>
 
 <body>
-
-<audio id="music" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
 
 <div class="card">
 
@@ -184,12 +178,12 @@ button:hover{transform:scale(1.05)}
 <!-- PAGE 2 -->
 <div class="step">
   <h2>You Have Mail 💌</h2>
-  <div class="envelope" onclick="openLetter()">✉️</div>
+  <div class="envelope-wrap" id="env" onclick="openLetter()">✉️</div>
   <p>(Click the envelope)</p>
   <div class="letter" id="letter">
     <strong>20th December 2025 · 1:15 PM</strong><br><br>
     My life changed when I met you 🌸  
-    From “Sorry I can’t come” 😅 to “I don’t want you to go” 🥺…  
+    From “Sorry I can’t come” 😅 to “I don’t want you to go” 🥺  
     From that 2nd hug 🤗, kissing lessons 😏, jungliyat 🐾 and besharmi 😜  
     to “tu bau pyaaro pyaaro lage che” 💖  
     All of it within one magical month ✨  
@@ -209,7 +203,7 @@ button:hover{transform:scale(1.05)}
       <img src="https://parshvashah55.github.io/future-mrs-shah/photo1.jpg">
     </div>
     <div class="photo-card" onclick="showPhoto(1)">
-      <span class="sticker">🦋</span><span class="sticker" style="top:40%;left:20%">✨</span>
+      <span class="sticker">🦋</span><span class="sticker" style="top:50%;left:20%">✨</span>
       <img src="https://parshvashah55.github.io/future-mrs-shah/photo2.jpg">
     </div>
     <div class="photo-card" onclick="showPhoto(2)">
@@ -217,7 +211,7 @@ button:hover{transform:scale(1.05)}
       <img src="https://parshvashah55.github.io/future-mrs-shah/photo3.jpg">
     </div>
   </div>
-  <p style="font-size:13px;margin-top:16px">
+  <p style="font-size:13px;margin-top:16px;">
     These are only 3 of them,<br>but thousands more to go 💕
   </p>
   <button onclick="next()">Continue</button>
@@ -227,22 +221,20 @@ button:hover{transform:scale(1.05)}
 <div class="step">
   <h1 class="val-text">Will you be my Valentine?</h1>
   <div class="final-buttons">
-    <button class="yes-btn" onclick="yes()">YES ❤️</button>
-    <button class="no-btn" id="no">NO 🙃</button>
+    <button class="yes-btn" id="yesBtn" onclick="next()">YES ❤️</button>
+    <button class="no-btn" id="noBtn">NO 🙃</button>
   </div>
 </div>
 
 <!-- PAGE 5 -->
 <div class="step">
   <h1>YOU SAID YESSS 💖💖💖</h1>
-  <p style="line-height:1.85">
-    You’re officially locked in for the next 50 Valentine’s Days 😏💍<br>
-    From our endless bakwas 😜, teasing fights, chaos and magic ✨  
-    I wouldn’t want this madness with anyone else 💞<br><br>
-    Across distance, across time — it’s you. Always you 🌍💌<br><br>
-    — With so much love,<br>
-    your Chikudo 🐣💖
+  <p style="line-height:1.8;">
+    And just like that… you’re officially locked in 😏  
+    From our endless bakwas 😜 to teasing fights, madness and magic ✨  
+    I wouldn’t want this chaos with anyone else 💞
   </p>
+  <div class="signature">— your Chikudo 🐣💖</div>
 </div>
 
 </div>
@@ -255,58 +247,42 @@ button:hover{transform:scale(1.05)}
 </div>
 
 <script>
-let i=0,started=false;
+let step=0;
 const steps=document.querySelectorAll('.step');
-const music=document.getElementById('music');
-
 function next(){
-  if(!started){music.play();started=true}
-  steps[i].classList.remove('active');
-  i++;
-  steps[i].classList.add('active');
+  steps[step].classList.remove('active');
+  step++;
+  steps[step].classList.add('active');
 }
-
 function openLetter(){
+  document.getElementById('env').classList.add('envelope-open');
   document.getElementById('letter').style.display='block';
 }
 
-const caps=[
+const captions=[
   "The one with ‘bhaade k flowers’ 🌸💐",
   "The one where I can’t get enough of your puppies 🐶📸",
   "The one where I discovered your junglee side 🐾🔥"
 ];
-function showPhoto(n){
-  const img=document.querySelectorAll('.photo-card img')[n];
-  viewerImg.src=img.src;
-  viewerCap.innerText=caps[n];
-  viewer.style.display='flex';
+function showPhoto(i){
+  document.getElementById('viewerImg').src=document.querySelectorAll('.photo-card img')[i].src;
+  document.getElementById('viewerCap').innerText=captions[i];
+  document.getElementById('viewer').style.display='flex';
 }
-function closeViewer(){viewer.style.display='none'}
+function closeViewer(){
+  document.getElementById('viewer').style.display='none';
+}
 
+/* NO weakens, YES strengthens */
 let h=0;
-const no=document.getElementById('no');
+const no=document.getElementById('noBtn');
+const yes=document.getElementById('yesBtn');
 no.onmouseenter=()=>{
-  if(navigator.vibrate) navigator.vibrate(40);
   h++;
-  no.style.transform=`translate(${Math.random()*120-60}px,${Math.random()*60-30}px) scale(${Math.max(.3,1-h*.25)})`;
+  no.style.transform=`translate(${Math.random()*100-50}px,${Math.random()*60-30}px) scale(${Math.max(0.3,1-h*0.25)})`;
+  yes.style.transform=`scale(${1+h*0.12})`;
   if(h>=3) no.style.display='none';
 };
-
-function yes(){
-  next();
-  for(let i=0;i<90;i++){
-    setTimeout(()=>{
-      const e=document.createElement('div');
-      e.className='float';
-      e.innerText=["💖","✨","🦋","🌸","💘","⭐"][Math.floor(Math.random()*6)];
-      e.style.left=Math.random()*100+"vw";
-      e.style.fontSize=16+Math.random()*28+"px";
-      e.style.animationDuration=4+Math.random()*4+"s";
-      document.body.appendChild(e);
-      setTimeout(()=>e.remove(),9000);
-    },i*22);
-  }
-}
 </script>
 
 </body>
