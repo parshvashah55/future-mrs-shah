@@ -246,54 +246,70 @@ Across distance, across time, across everything — it’s you. Always you 🌍�
     <p id="viewerCap"></p>
   </div>
 </div>
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-let step=0;
-const steps=document.querySelectorAll('.step');
-const music=document.getElementById('bgMusic');
+let step = 0;
+const steps = document.querySelectorAll('.step');
+const music = document.getElementById('bgMusic');
 
 function next(){
   if(step === 0){
-    music.volume = 0.5;
+    music.volume = 0;
     music.play().catch(()=>{});
+    let v = 0;
+    const fade = setInterval(()=>{
+      v += 0.05;
+      music.volume = v;
+      if(v >= 0.5) clearInterval(fade);
+    }, 200);
   }
+
   steps[step].classList.remove('active');
   step++;
-  steps[step].classList.add('active');
+  if(steps[step]) steps[step].classList.add('active');
 }
+
+/* Envelope open */
 function openLetter(){
   document.getElementById('env').classList.add('envelope-open');
   document.getElementById('letter').style.display='block';
 }
 
-const captions=[
-  "The one with ‘dusro k flowers’ 🤭🌸💐",
-  "The one where I can’t get enough of your pappies 😘📸",
+/* Photo viewer */
+const captions = [
+  "The one with ‘bhaade k flowers’ 🌸💐",
+  "The one where I can’t get enough of your pappies 😘",
   "The one where I discovered more of your jungleeyat 🐾🔥"
 ];
+
 function showPhoto(i){
-  document.getElementById('viewerImg').src=document.querySelectorAll('.photo-card img')[i].src;
-  document.getElementById('viewerCap').innerText=captions[i];
-  document.getElementById('viewer').style.display='flex';
-}
-function closeViewer(){
-  document.getElementById('viewer').style.display='none';
+  const img = document.querySelectorAll('.photo-card img')[i];
+  document.getElementById('viewerImg').src = img.src;
+  document.getElementById('viewerCap').innerText = captions[i];
+  document.getElementById('viewer').style.display = 'flex';
 }
 
-/* NO weakens, YES strengthens */
-let h=0;
-const no=document.getElementById('noBtn');
-const yes=document.getElementById('yesBtn');
-no.onmouseenter=()=>{
+function closeViewer(){
+  document.getElementById('viewer').style.display = 'none';
+}
+
+/* NO button logic */
+let h = 0;
+const no = document.getElementById('noBtn');
+const yes = document.getElementById('yesBtn');
+
+no.onmouseenter = () => {
   h++;
-  no.style.transform=`translate(${Math.random()*100-50}px,${Math.random()*60-30}px) scale(${Math.max(0.3,1-h*0.25)})`;
-  yes.style.transform=`scale(${1+h*0.12})`;
-  if(h>=3) no.style.display='none';
+  no.style.transform =
+    `translate(${Math.random()*100-50}px,${Math.random()*60-30}px)
+     scale(${Math.max(0.3,1-h*0.25)})`;
+  yes.style.transform = `scale(${1+h*0.12})`;
+  if(h >= 3) no.style.display = 'none';
 };
 </script>
-<audio id="bgMusic" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-  
+
 </body>
 </html>
